@@ -1,0 +1,199 @@
+# depslib dependency file v1.0
+1653643070 source:/home/alexlv/Work/multithreaded_TCP_client/main.cpp
+	"TCP_IP/include/TcpClient.h"
+	<iostream>
+	<stdlib.h>
+	<thread>
+	"../cli-master/include/cli/cli.h"
+	"../cli-master/include/cli/clilocalsession.h"
+	"../cli-master/include/cli/filehistorystorage.h"
+	"../cli-master/include/cli/clifilesession.h"
+	<fstream>
+
+1653469176 source:/home/alexlv/Work/multithreaded_TCP_client/TCP_IP/source/TcpClient.cpp
+	"../include/TcpClient.h"
+	<stdio.h>
+	<cstring>
+	<iostream>
+
+1653577412 /home/alexlv/Work/multithreaded_TCP_client/TCP_IP/include/TcpClient.h
+	<cstdint>
+	<cstddef>
+	<sys/socket.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<stdio.h>
+	<stdlib.h>
+	"TCPBase.h"
+	<memory.h>
+
+1653562057 /home/alexlv/Work/multithreaded_TCP_client/TCP_IP/include/TCPBase.h
+	<sys/socket.h>
+	<cstdint>
+	<cstring>
+	<cinttypes>
+	<malloc.h>
+	<queue>
+	<vector>
+	<functional>
+	<thread>
+	<mutex>
+	<condition_variable>
+	<atomic>
+
+1653390052 source:/home/alexlv/Work/multithreaded_TCP_client/TCP_IP/source/TcpServer.cpp
+	"../include/TcpServer.h"
+	<chrono>
+	<cstring>
+	<mutex>
+	<iostream>
+
+1653559226 /home/alexlv/Work/multithreaded_TCP_client/TCP_IP/include/TcpServer.h
+	<functional>
+	<list>
+	<thread>
+	<mutex>
+	<shared_mutex>
+	<sys/socket.h>
+	<netinet/in.h>
+	<netinet/tcp.h>
+	<unistd.h>
+	<fcntl.h>
+	<stdio.h>
+	<stdlib.h>
+	"TCPBase.h"
+
+1653384925 source:/home/alexlv/Work/multithreaded_TCP_client/TCP_IP/source/TcpServerClient.cpp
+	"../include/TcpServer.h"
+
+1651524772 /home/alexlv/Work/cli-master/include/cli/cli.h
+	<string>
+	<vector>
+	<memory>
+	<functional>
+	<algorithm>
+	<cctype>
+	<type_traits>
+	"colorprofile.h"
+	"detail/history.h"
+	"detail/split.h"
+	"detail/fromstring.h"
+	"historystorage.h"
+	"volatilehistorystorage.h"
+	<iostream>
+	<utility>
+
+1651524772 /home/alexlv/Work/cli-master/include/cli/colorprofile.h
+	"detail/rang.h"
+
+1651524772 /home/alexlv/Work/cli-master/include/cli/detail/rang.h
+	<unistd.h>
+	<cstring>
+	<windows.h>
+	<io.h>
+	<VersionHelpers.h>
+	<algorithm>
+	<cstdlib>
+	<ios>
+	<iostream>
+	<iterator>
+	<type_traits>
+
+1651524772 /home/alexlv/Work/cli-master/include/cli/detail/history.h
+	<deque>
+	<limits>
+	<vector>
+	<string>
+	<algorithm>
+	<cassert>
+
+1651524772 /home/alexlv/Work/cli-master/include/cli/detail/split.h
+	<algorithm>
+	<string>
+	<utility>
+	<vector>
+	<cassert>
+
+1651524772 /home/alexlv/Work/cli-master/include/cli/detail/fromstring.h
+	<boost/lexical_cast.hpp>
+	<exception>
+	<limits>
+	<string>
+	<sstream>
+
+1651524772 /home/alexlv/Work/cli-master/include/cli/historystorage.h
+	<vector>
+	<string>
+
+1651524772 /home/alexlv/Work/cli-master/include/cli/volatilehistorystorage.h
+	"historystorage.h"
+	<deque>
+
+1651524772 /home/alexlv/Work/cli-master/include/cli/clilocalsession.h
+	<ostream>
+	"detail/inputhandler.h"
+	"cli.h"
+	"detail/keyboard.h"
+
+1651524772 /home/alexlv/Work/cli-master/include/cli/detail/inputhandler.h
+	<functional>
+	<string>
+	"terminal.h"
+	"inputdevice.h"
+	"../cli.h"
+	"commonprefix.h"
+
+1651524772 /home/alexlv/Work/cli-master/include/cli/detail/terminal.h
+	<string>
+	"../colorprofile.h"
+	"inputdevice.h"
+
+1651524772 /home/alexlv/Work/cli-master/include/cli/detail/inputdevice.h
+	<functional>
+	<string>
+	"../scheduler.h"
+
+1651524772 /home/alexlv/Work/cli-master/include/cli/scheduler.h
+	<functional>
+
+1651524772 /home/alexlv/Work/cli-master/include/cli/detail/commonprefix.h
+	<cassert>
+	<string>
+	<vector>
+	<algorithm>
+
+1651524772 /home/alexlv/Work/cli-master/include/cli/detail/keyboard.h
+	"linuxkeyboard.h"
+	"winkeyboard.h"
+
+1651524772 /home/alexlv/Work/cli-master/include/cli/detail/linuxkeyboard.h
+	<thread>
+	<memory>
+	<cstdio>
+	<termios.h>
+	<unistd.h>
+	<sys/select.h>
+	<cassert>
+	"inputdevice.h"
+
+1651524772 /home/alexlv/Work/cli-master/include/cli/detail/winkeyboard.h
+	<functional>
+	<string>
+	<thread>
+	<memory>
+	<conio.h>
+	<cassert>
+	"inputdevice.h"
+	<windows.h>
+
+1651524772 /home/alexlv/Work/cli-master/include/cli/filehistorystorage.h
+	"historystorage.h"
+	<fstream>
+	<utility>
+
+1651524772 /home/alexlv/Work/cli-master/include/cli/clifilesession.h
+	<string>
+	<iostream>
+	<stdexcept>
+	"cli.h"
+

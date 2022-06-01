@@ -3,24 +3,31 @@
 #include <iostream>
 #include <stdlib.h>
 #include <thread>
+#include <fstream>
 
 #include "../cli-master/include/cli/cli.h"
 #include "../cli-master/include/cli/clilocalsession.h"
 #include "../cli-master/include/cli/filehistorystorage.h"
 #include "../cli-master/include/cli/clifilesession.h"
 
-#include <fstream>
 
 using namespace cli;
 using namespace tcp;
+
+
 
 // IP 127.0.0.1
 uint32_t LOCALHOST_IP = 0x0100007f;
 
 bool runClient(TcpClient& client, uint16_t port) {
   if(client.connectTo(LOCALHOST_IP, port) == SocketStatus::connected) {
-    std::string greetings = "Hello, server";
     std::clog << "Client connected\n";
+
+    client.setHandler([&client](ReceivedData data) {
+        std::clog << (char*)data.data() << '\n';
+    });
+
+    std::string greetings = "Hello, server";
     client.sendData(greetings.c_str(), sizeof(greetings));
     return true;
   } else {
@@ -31,6 +38,8 @@ bool runClient(TcpClient& client, uint16_t port) {
 }
 
 int main(int, char**) {
+
+    using namespace std::chrono_literals;
 
     //ThreadPool thread_pool;
 
@@ -52,7 +61,7 @@ int main(int, char**) {
 
   // setup cli
   ThreadPool thread_pool;
-  //std::vector<TcpClient> many_clients;
+  std::vector<TcpClient> many_clients;
 
   TcpClient first_client(&thread_pool);
 
@@ -77,66 +86,58 @@ int main(int, char**) {
             "Disconnect from the server" );
     rootMenu -> Insert(
             "Number_Clients",
-            [](std::ostream& out, uint16_t numberClients) {
+            [&](std::ostream& out, uint16_t numberClients) {
+                //many_clients.resize(numberClients);
+                //many_clients.assign(numberClients, new TcpClient(&thread_pool));
                 out << "Clients: " << numberClients << "\n";
             },
             "Number of created clients" );
 
 
-    auto subMenu = std::make_unique< Menu >( "calculator" );
+    auto subMenu = std::make_unique< Menu >( "Calculator" );
     subMenu -> Insert(
             "Addition",
             [&](std::ostream& out, int16_t a, int16_t b) {
-                int32_t result = 0;
-                std::string sendingRequest = "add";
-                sendingRequest += " " + std::to_string(a) + " " + std::to_string(b);
+
+                std::string sendingRequest = "add ";
+                sendingRequest += std::to_string(a) + " " + std::to_string(b);
                 first_client.sendData(sendingRequest.c_str(), sizeof(sendingRequest));
-                //expect an answer
-                out << "Adding two numbers\t" << result << "\n";
+                //waiting for an answer
+                std::this_thread::sleep_for(0.5s);
             },
             "Adding two numbers" );
     subMenu -> Insert(
             "Subtraction",
             [&](std::ostream& out, int16_t a, int16_t b) {
-                int32_t result = 0;
-                std::string sendingRequest = "sub";
-                sendingRequest += " " + std::to_string(a) + " " + std::to_string(b);
+
+                std::string sendingRequest = "sub ";
+                sendingRequest += std::to_string(a) + " " + std::to_string(b);
                 first_client.sendData(sendingRequest.c_str(), sizeof(sendingRequest));
-                //expect an answer
-                out << "Subtraction two numbers\t" << result << "\n";
+                std::this_thread::sleep_for(0.5s);
             },
             "Subtraction of two numbers" );
     subMenu -> Insert(
             "Multiplication",
             [&](std::ostream& out, int16_t a, int16_t b) {
-                int32_t result = 0;
-                std::string sendingRequest = "mul";
-                sendingRequest += " " + std::to_string(a) + " " + std::to_string(b);
+
+                std::string sendingRequest = "mul ";
+                sendingRequest += std::to_string(a) + " " + std::to_string(b);
                 first_client.sendData(sendingRequest.c_str(), sizeof(sendingRequest));
-                //expect an answer
-                out << "Multiplication two numbers\t" << result << "\n";
+                std::this_thread::sleep_for(0.5s);
             },
             "Multiplication of two numbers" );
     subMenu -> Insert(
             "Division",
             [&](std::ostream& out, int16_t a, int16_t b) {
-                int32_t result = 0;
-                std::string sendingRequest = "div";
-                sendingRequest += " " + std::to_string(a) + " " + std::to_string(b);
+
+                std::string sendingRequest = "div ";
+                sendingRequest += std::to_string(a) + " " + std::to_string(b);
                 first_client.sendData(sendingRequest.c_str(), sizeof(sendingRequest));
-                //expect an answer
-                out << "Division two numbers\t" << result << "\n";
+                std::this_thread::sleep_for(0.5s);
             },
             "Division of two numbers" );
 
 
-    auto subSubMenu = std::make_unique< Menu >( "subsub" );
-        subSubMenu -> Insert(
-            "hello",
-            [](std::ostream& out){ out << "Hello, subsubmenu world\n"; },
-            "Print hello world in the sub-submenu" );
-
-    subMenu -> Insert( std::move(subSubMenu));
 
     rootMenu -> Insert( std::move(subMenu) );
 
